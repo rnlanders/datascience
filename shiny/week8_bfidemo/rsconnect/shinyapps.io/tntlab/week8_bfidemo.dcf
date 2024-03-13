@@ -1,0 +1,10 @@
+name: week8_bfidemo
+title:
+username: tntlab
+account: tntlab
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 11482330
+bundleId: 8368940
+url: https://tntlab.shinyapps.io/week8_bfidemo/
+version: 1
