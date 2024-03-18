@@ -1,0 +1,56 @@
+---
+title: "PSY 8712 Week 8 Project"
+author: "Richard"
+output: 
+  html_document:
+    df_print: paged
+---
+
+# Reproducible Image and Online Resources
+An image of this project as of *`r Sys.Date()`* can be accessed by [clicking this link](https://mybinder.org/v2/gh/rnlanders/datascience/HEAD?urlpath=rstudio). 
+
+An interactive web app is available by [clicking this link instead](https://tntlab.shinyapps.io/shiny_week8/).
+
+# Script Settings and Resources
+```{r section2, message=F}
+setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+library(tidyverse)
+```
+
+# Data Import and Cleaning
+Imported the week 3 dataset and reverse coded q5
+```{r section3}
+week8_tbl <- read_csv("../data/week3.csv") %>%
+  mutate(q5 = 6-q5,
+         timeStart = ymd_hms(timeStart),
+         q1q6mean = rowMeans(across(q1:q6)),
+         q8q10mean = rowMeans(across(q8:q10))
+  ) %>%
+  select(timeEnd, gender, q1:q6, q1q6mean, q8q10mean)
+```
+
+# Data Visualization
+Subsetted on q1-q6 for display, then displayed calculated means
+```{r section4, echo=F, message=F}
+select(week8_tbl, q1:q6)
+week8_tbl %>%
+  ggplot(aes(x=q1q6mean, y=q8q10mean)) +
+  geom_point() +
+  geom_smooth(method="lm", color="purple")
+```
+
+# Analysis
+calculated correlation between numbers
+```{r section5}
+cortest <- cor.test(week8_tbl$q1q6mean, week8_tbl$q8q10mean)
+cortest
+```
+I observed a correlation of `r str_remove(formatC(cortest$estimate, format="f", digits=2), "^0")`. It was not statistically significant.
+
+# Data Export
+```{r section6}
+week8_tbl %>%
+  mutate(afterjuly1 = timeEnd > "2017-07-01 00:00:00") %>%
+  select(gender, q1q6mean, q8q10mean, afterjuly1) %>%
+  saveRDS("../shiny/shiny_week8/import.RDS")
+```
