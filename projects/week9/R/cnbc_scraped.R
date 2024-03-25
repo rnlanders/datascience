@@ -42,7 +42,7 @@ paste0(
   ") = ",
   formatC(aov_results[[1]]$`F value`[1], format="f", digits=2),
   ", p = ",
-  str_remove(formatC(aov_results[[1]]$`Pr(>F)`[1], format="f", digits=2),"^0"),
+  str_replace(formatC(aov_results[[1]]$`Pr(>F)`[1], format="f", digits=2),"0\\.", "\\."),
   ". This test was ",
   ifelse(aov_results[[1]]$`Pr(>F)`[1] >= .05, "not ", ""),
   "statistically significant."
