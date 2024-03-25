@@ -13,7 +13,11 @@ reddit_thread_urls <- find_thread_urls(
   period = "month") %>%
   mutate(date_utc = ymd(date_utc))
 
+<<<<<<< HEAD
 ### checking how many posts are from the last month
+=======
+# checking how many posts are from the last month
+>>>>>>> 12626bcf0ce0e439854aeb4061c08b00902349a5
 thread_urls2 <- filter(reddit_thread_urls, timestamp > as.numeric(as.POSIXct(Sys.Date() - 30)))
 nrow(thread_urls2)
 
@@ -56,7 +60,11 @@ while (newest_date > as.numeric(as.POSIXct(Sys.Date() - 30))) {
   reddit_tbl <- bind_rows(reddit_tbl, this_tbl)
 }
 
+<<<<<<< HEAD
 ### Checking how many posts are from the last month - should match above
+=======
+# Checking how many posts are from the last month - should match above
+>>>>>>> 12626bcf0ce0e439854aeb4061c08b00902349a5
 reddit2_tbl <- filter(reddit_tbl, date > as.numeric(as.POSIXct(Sys.Date() - 30)))
 nrow(reddit2_tbl)
 
