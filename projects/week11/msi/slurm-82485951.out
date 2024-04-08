@@ -1,0 +1,205 @@
+── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ stringr   1.5.0
+✔ ggplot2   3.5.0     ✔ tibble    3.2.1
+✔ lubridate 1.9.3     ✔ tidyr     1.3.1
+✔ purrr     1.0.2     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+Loading required package: lattice
+
+Attaching package: ‘caret’
+
+The following object is masked from ‘package:purrr’:
+
+    lift
+
+Loading required package: foreach
+
+Attaching package: ‘foreach’
+
+The following objects are masked from ‘package:purrr’:
+
+    accumulate, when
+
+Loading required package: iterators
++ Fold1: intercept=TRUE 
+- Fold1: intercept=TRUE 
++ Fold2: intercept=TRUE 
+- Fold2: intercept=TRUE 
+Aggregating results
+Fitting final model on full training set
+Warning messages:
+1: In predict.lm(modelFit, newdata) :
+  prediction from rank-deficient fit; attr(*, "non-estim") has doubtful cases
+2: In predict.lm(modelFit, newdata) :
+  prediction from rank-deficient fit; attr(*, "non-estim") has doubtful cases
+2.492 sec elapsed
+Linear Regression 
+
+426 samples
+536 predictors
+
+Pre-processing: centered (503), scaled (503), median imputation (503),
+ remove (33) 
+Resampling: Cross-Validated (2 fold) 
+Summary of sample sizes: 213, 213 
+Resampling results:
+
+  RMSE      Rsquared    MAE     
+  100.7375  0.01356399  50.27189
+
+Tuning parameter 'intercept' was held constant at a value of TRUE
+Warning message:
+In predict.lm(modelFit, newdata) :
+  prediction from rank-deficient fit; attr(*, "non-estim") has doubtful cases
++ Fold1: alpha=0.10, lambda=8.217 
+- Fold1: alpha=0.10, lambda=8.217 
++ Fold1: alpha=0.55, lambda=8.217 
+- Fold1: alpha=0.55, lambda=8.217 
++ Fold1: alpha=1.00, lambda=8.217 
+- Fold1: alpha=1.00, lambda=8.217 
++ Fold2: alpha=0.10, lambda=8.217 
+- Fold2: alpha=0.10, lambda=8.217 
++ Fold2: alpha=0.55, lambda=8.217 
+- Fold2: alpha=0.55, lambda=8.217 
++ Fold2: alpha=1.00, lambda=8.217 
+- Fold2: alpha=1.00, lambda=8.217 
+Aggregating results
+Selecting tuning parameters
+Fitting alpha = 0.55, lambda = 0.822 on full training set
+3.053 sec elapsed
+glmnet 
+
+426 samples
+536 predictors
+
+Pre-processing: centered (503), scaled (503), median imputation (503),
+ remove (33) 
+Resampling: Cross-Validated (2 fold) 
+Summary of sample sizes: 213, 213 
+Resampling results across tuning parameters:
+
+  alpha  lambda     RMSE       Rsquared   MAE     
+  0.10   0.8217368   8.553299  0.6480523  5.531685
+  0.10   2.5985599   8.120016  0.6776674  5.715659
+  0.10   8.2173678   8.913483  0.6495160  6.846938
+  0.55   0.8217368   7.982964  0.6810515  5.815242
+  0.55   2.5985599   9.392069  0.5934105  7.236486
+  0.55   8.2173678  11.198135  0.5358595  8.473827
+  1.00   0.8217368   8.576104  0.6398416  6.420834
+  1.00   2.5985599  10.092173  0.5449902  7.632692
+  1.00   8.2173678  12.464539  0.5286157  9.480088
+
+RMSE was used to select the optimal model using the smallest value.
+The final values used for the model were alpha = 0.55 and lambda = 0.8217368.
++ Fold1: mtry=  2, min.node.size=5, splitrule=variance 
+- Fold1: mtry=  2, min.node.size=5, splitrule=variance 
++ Fold1: mtry= 31, min.node.size=5, splitrule=variance 
+- Fold1: mtry= 31, min.node.size=5, splitrule=variance 
++ Fold1: mtry=502, min.node.size=5, splitrule=variance 
+- Fold1: mtry=502, min.node.size=5, splitrule=variance 
++ Fold1: mtry=  2, min.node.size=5, splitrule=extratrees 
+- Fold1: mtry=  2, min.node.size=5, splitrule=extratrees 
++ Fold1: mtry= 31, min.node.size=5, splitrule=extratrees 
+- Fold1: mtry= 31, min.node.size=5, splitrule=extratrees 
++ Fold1: mtry=502, min.node.size=5, splitrule=extratrees 
+- Fold1: mtry=502, min.node.size=5, splitrule=extratrees 
++ Fold2: mtry=  2, min.node.size=5, splitrule=variance 
+- Fold2: mtry=  2, min.node.size=5, splitrule=variance 
++ Fold2: mtry= 31, min.node.size=5, splitrule=variance 
+- Fold2: mtry= 31, min.node.size=5, splitrule=variance 
++ Fold2: mtry=502, min.node.size=5, splitrule=variance 
+Error: mtry can not be larger than number of variables in data. Ranger will EXIT now.
+model fit failed for Fold2: mtry=502, min.node.size=5, splitrule=variance Error in ranger::ranger(dependent.variable.name = ".outcome", data = x,  : 
+  User interrupt or internal error.
+ 
+- Fold2: mtry=502, min.node.size=5, splitrule=variance 
++ Fold2: mtry=  2, min.node.size=5, splitrule=extratrees 
+- Fold2: mtry=  2, min.node.size=5, splitrule=extratrees 
++ Fold2: mtry= 31, min.node.size=5, splitrule=extratrees 
+- Fold2: mtry= 31, min.node.size=5, splitrule=extratrees 
++ Fold2: mtry=502, min.node.size=5, splitrule=extratrees 
+Error: mtry can not be larger than number of variables in data. Ranger will EXIT now.
+model fit failed for Fold2: mtry=502, min.node.size=5, splitrule=extratrees Error in ranger::ranger(dependent.variable.name = ".outcome", data = x,  : 
+  User interrupt or internal error.
+ 
+- Fold2: mtry=502, min.node.size=5, splitrule=extratrees 
+Aggregating results
+Selecting tuning parameters
+Fitting mtry = 502, splitrule = extratrees, min.node.size = 5 on full training set
+Warning messages:
+1: model fit failed for Fold2: mtry=502, min.node.size=5, splitrule=variance Error in ranger::ranger(dependent.variable.name = ".outcome", data = x,  : 
+  User interrupt or internal error.
+ 
+2: model fit failed for Fold2: mtry=502, min.node.size=5, splitrule=extratrees Error in ranger::ranger(dependent.variable.name = ".outcome", data = x,  : 
+  User interrupt or internal error.
+ 
+3: In nominalTrainWorkflow(x = x, y = y, wts = weights, info = trainInfo,  :
+  There were missing values in resampled performance measures.
+6.595 sec elapsed
+Random Forest 
+
+426 samples
+536 predictors
+
+Pre-processing: centered (503), scaled (503), median imputation (503),
+ remove (33) 
+Resampling: Cross-Validated (2 fold) 
+Summary of sample sizes: 212, 214 
+Resampling results across tuning parameters:
+
+  mtry  splitrule   RMSE       Rsquared   MAE     
+    2   variance    10.890814  0.5273648  8.147993
+    2   extratrees  11.283176  0.5257624  8.543271
+   31   variance     8.599483  0.6526170  5.874316
+   31   extratrees   9.073657  0.6188583  6.472248
+  502   variance     9.208010  0.5251628  5.140709
+  502   extratrees   8.023344  0.5936958  4.822360
+
+Tuning parameter 'min.node.size' was held constant at a value of 5
+RMSE was used to select the optimal model using the smallest value.
+The final values used for the model were mtry = 502, splitrule = extratrees
+ and min.node.size = 5.
++ Fold1: lambda=0, alpha=0, nrounds=50, eta=0.3 
+- Fold1: lambda=0, alpha=0, nrounds=50, eta=0.3 
++ Fold2: lambda=0, alpha=0, nrounds=50, eta=0.3 
+- Fold2: lambda=0, alpha=0, nrounds=50, eta=0.3 
+Aggregating results
+Fitting final model on full training set
+3.228 sec elapsed
+eXtreme Gradient Boosting 
+
+426 samples
+536 predictors
+
+Pre-processing: centered (503), scaled (503), median imputation (503),
+ remove (33) 
+Resampling: Cross-Validated (2 fold) 
+Summary of sample sizes: 213, 213 
+Resampling results:
+
+  RMSE      Rsquared   MAE     
+  8.884324  0.6686985  4.552811
+
+Tuning parameter 'nrounds' was held constant at a value of 50
+Tuning
+ 'alpha' was held constant at a value of 0
+Tuning parameter 'eta' was
+ held constant at a value of 0.3
+Aggregating results
+Fitting final model on full training set
+7.184 sec elapsed
+Aggregating results
+Selecting tuning parameters
+Fitting alpha = 0.1, lambda = 8.22 on full training set
+2.86 sec elapsed
+Aggregating results
+Selecting tuning parameters
+Fitting mtry = 502, splitrule = extratrees, min.node.size = 5 on full training set
+3.06 sec elapsed
+Aggregating results
+Fitting final model on full training set
+3.87 sec elapsed

@@ -1,0 +1,176 @@
+── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ stringr   1.5.0
+✔ ggplot2   3.5.0     ✔ tibble    3.2.1
+✔ lubridate 1.9.3     ✔ tidyr     1.3.1
+✔ purrr     1.0.2     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+Loading required package: lattice
+
+Attaching package: ‘caret’
+
+The following object is masked from ‘package:purrr’:
+
+    lift
+
+Loading required package: foreach
+
+Attaching package: ‘foreach’
+
+The following objects are masked from ‘package:purrr’:
+
+    accumulate, when
+
+Loading required package: iterators
++ Fold1: intercept=TRUE 
+- Fold1: intercept=TRUE 
++ Fold2: intercept=TRUE 
+- Fold2: intercept=TRUE 
+Aggregating results
+Fitting final model on full training set
+Warning messages:
+1: In predict.lm(modelFit, newdata) :
+  prediction from rank-deficient fit; attr(*, "non-estim") has doubtful cases
+2: In predict.lm(modelFit, newdata) :
+  prediction from rank-deficient fit; attr(*, "non-estim") has doubtful cases
+2.427 sec elapsed
+Linear Regression 
+
+426 samples
+536 predictors
+
+Pre-processing: centered (501), scaled (501), median imputation (501),
+ remove (35) 
+Resampling: Cross-Validated (2 fold) 
+Summary of sample sizes: 214, 212 
+Resampling results:
+
+  RMSE      Rsquared    MAE     
+  472.7286  0.02122465  229.9564
+
+Tuning parameter 'intercept' was held constant at a value of TRUE
+Warning message:
+In predict.lm(modelFit, newdata) :
+  prediction from rank-deficient fit; attr(*, "non-estim") has doubtful cases
++ Fold1: alpha=0.10, lambda=8.318 
+- Fold1: alpha=0.10, lambda=8.318 
++ Fold1: alpha=0.55, lambda=8.318 
+- Fold1: alpha=0.55, lambda=8.318 
++ Fold1: alpha=1.00, lambda=8.318 
+- Fold1: alpha=1.00, lambda=8.318 
++ Fold2: alpha=0.10, lambda=8.318 
+- Fold2: alpha=0.10, lambda=8.318 
++ Fold2: alpha=0.55, lambda=8.318 
+- Fold2: alpha=0.55, lambda=8.318 
++ Fold2: alpha=1.00, lambda=8.318 
+- Fold2: alpha=1.00, lambda=8.318 
+Aggregating results
+Selecting tuning parameters
+Fitting alpha = 0.1, lambda = 2.63 on full training set
+3.226 sec elapsed
+glmnet 
+
+426 samples
+536 predictors
+
+Pre-processing: centered (501), scaled (501), median imputation (501),
+ remove (35) 
+Resampling: Cross-Validated (2 fold) 
+Summary of sample sizes: 214, 212 
+Resampling results across tuning parameters:
+
+  alpha  lambda    RMSE      Rsquared   MAE      
+  0.10   0.831819  14.77267  0.5263006   7.582357
+  0.10   2.630443  14.28460  0.5673333   7.901360
+  0.10   8.318190  14.71653  0.5695014   8.916849
+  0.55   0.831819  14.95759  0.5229159   8.157886
+  0.55   2.630443  15.81050  0.4659466   9.170890
+  0.55   8.318190  17.66268  0.3791334  11.380198
+  1.00   0.831819  15.64453  0.4749930   8.840108
+  1.00   2.630443  16.88107  0.3922935  10.035005
+  1.00   8.318190  18.62778  0.3874904  12.586593
+
+RMSE was used to select the optimal model using the smallest value.
+The final values used for the model were alpha = 0.1 and lambda = 2.630443.
++ Fold1: mtry=  2, min.node.size=5, splitrule=variance 
+- Fold1: mtry=  2, min.node.size=5, splitrule=variance 
++ Fold1: mtry= 31, min.node.size=5, splitrule=variance 
+- Fold1: mtry= 31, min.node.size=5, splitrule=variance 
++ Fold1: mtry=500, min.node.size=5, splitrule=variance 
+- Fold1: mtry=500, min.node.size=5, splitrule=variance 
++ Fold1: mtry=  2, min.node.size=5, splitrule=extratrees 
+- Fold1: mtry=  2, min.node.size=5, splitrule=extratrees 
++ Fold1: mtry= 31, min.node.size=5, splitrule=extratrees 
+- Fold1: mtry= 31, min.node.size=5, splitrule=extratrees 
++ Fold1: mtry=500, min.node.size=5, splitrule=extratrees 
+- Fold1: mtry=500, min.node.size=5, splitrule=extratrees 
++ Fold2: mtry=  2, min.node.size=5, splitrule=variance 
+- Fold2: mtry=  2, min.node.size=5, splitrule=variance 
++ Fold2: mtry= 31, min.node.size=5, splitrule=variance 
+- Fold2: mtry= 31, min.node.size=5, splitrule=variance 
++ Fold2: mtry=500, min.node.size=5, splitrule=variance 
+- Fold2: mtry=500, min.node.size=5, splitrule=variance 
++ Fold2: mtry=  2, min.node.size=5, splitrule=extratrees 
+- Fold2: mtry=  2, min.node.size=5, splitrule=extratrees 
++ Fold2: mtry= 31, min.node.size=5, splitrule=extratrees 
+- Fold2: mtry= 31, min.node.size=5, splitrule=extratrees 
++ Fold2: mtry=500, min.node.size=5, splitrule=extratrees 
+- Fold2: mtry=500, min.node.size=5, splitrule=extratrees 
+Aggregating results
+Selecting tuning parameters
+Fitting mtry = 500, splitrule = extratrees, min.node.size = 5 on full training set
+8.423 sec elapsed
+Random Forest 
+
+426 samples
+536 predictors
+
+Pre-processing: centered (501), scaled (501), median imputation (501),
+ remove (35) 
+Resampling: Cross-Validated (2 fold) 
+Summary of sample sizes: 214, 212 
+Resampling results across tuning parameters:
+
+  mtry  splitrule   RMSE       Rsquared   MAE      
+    2   variance    14.991427  0.6756405  10.909233
+    2   extratrees  15.415798  0.6826000  11.266605
+   31   variance    11.525600  0.7547099   8.093100
+   31   extratrees  11.875279  0.7765425   8.560684
+  500   variance    10.006531  0.7812163   6.294602
+  500   extratrees   9.362956  0.8296854   6.222163
+
+Tuning parameter 'min.node.size' was held constant at a value of 5
+RMSE was used to select the optimal model using the smallest value.
+The final values used for the model were mtry = 500, splitrule = extratrees
+ and min.node.size = 5.
++ Fold1: lambda=0, alpha=0, nrounds=50, eta=0.3 
+- Fold1: lambda=0, alpha=0, nrounds=50, eta=0.3 
++ Fold2: lambda=0, alpha=0, nrounds=50, eta=0.3 
+- Fold2: lambda=0, alpha=0, nrounds=50, eta=0.3 
+Aggregating results
+Fitting final model on full training set
+3.112 sec elapsed
+eXtreme Gradient Boosting 
+
+426 samples
+536 predictors
+
+Pre-processing: centered (501), scaled (501), median imputation (501),
+ remove (35) 
+Resampling: Cross-Validated (2 fold) 
+Summary of sample sizes: 214, 212 
+Resampling results:
+
+  RMSE    Rsquared   MAE     
+  7.6264  0.8724212  3.558388
+
+Tuning parameter 'nrounds' was held constant at a value of 50
+Tuning
+ 'alpha' was held constant at a value of 0
+Tuning parameter 'eta' was
+ held constant at a value of 0.3
+/var/spool/slurmd/job82485187/slurm_script: line 11: 34057 Killed                  Rscript week11-cluster.R
+slurmstepd: error: Detected 2 oom-kill event(s) in StepId=82485187.batch. Some of your processes may have been killed by the cgroup out-of-memory handler.
