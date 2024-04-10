@@ -50,7 +50,7 @@ sample_corpus <- VCorpus(VectorSource(sentences))
 
 # Function to see how preprocessing is going
 check_it <- function() {
-  casenum <- sample(1:20, 1)
+  casenum <- sample(1:40, 1)
   print(sample_corpus[[casenum]]$content)
   print(preprocessed_corpus[[casenum]]$content)
 }
@@ -91,7 +91,7 @@ DTM <- DocumentTermMatrix(preprocessed_corpus,
 DTM %>% as.matrix %>% as_tibble %>% View
 
 # Remove sparse terms (if needed, e.g., for ML)
-slim_DTM <- removeSparseTerms(DTM, .95)  # test many sparsity terms
+slim_DTM <- removeSparseTerms(DTM, .97)  # test many sparsity terms
 DTM$ncol
 slim_DTM$ncol
 
@@ -101,7 +101,7 @@ DTM_tbl <- DTM %>% as.matrix %>% as_tibble
 wordcloud(
   words = names(DTM_tbl),
   freq = colSums(DTM_tbl),
-  colors = brewer.pal(9,"Blues")
+  colors = brewer.pal(9,"YlOrBr")
 )
 
 # Or a bar graph
