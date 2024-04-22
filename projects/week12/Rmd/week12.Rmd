@@ -1,0 +1,9 @@
+---
+title: "Week 12 Debrief"
+output: html_notebook
+---
+
+# Script Settings and Resources
+```{r setup, message=F}
+setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+```
