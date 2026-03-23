@@ -1,0 +1,64 @@
+---
+title: "PSY 8712 Week 8 Project"
+author: "Richard"
+date: "2026-03-23"
+output: html_document
+---
+
+# Reproducible Image and Online Resources
+
+An image of this project as of *`r Sys.Date()`* can be accessed by clicking this [link](https://mybinder.org/v2/gh/rnlanders/datascience/HEAD). An interactive web app is available by [clicking this link](https://tntlab.shinyapps.io/shiny_week8/) instead.
+
+# Script Settings and Resources
+
+```{r echo=T, message=F}
+setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+library(tidyverse)
+library(GGally)
+```
+
+# Data Import and Cleaning
+comment!
+```{r}
+week8_tbl <- read_csv("../data/week3.csv") %>%
+    mutate(
+      timeStart = ymd_hms(timeStart),
+      condition = factor(condition, levels = c("A","B","C"), labels = c("Block A", "Block B", "Control")),
+      gender = factor(gender, levels = c("M","F"), labels = c("Male","Female")),
+      timeSpent = timeEnd - timeStart,
+      q5 = 6 - q5,
+      q1q6mean = rowMeans(across(q1:q6), na.rm=T),
+      q8q10mean = rowMeans(across(q8:q10), na.rm=T)
+    )
+```
+
+# Visualization
+comment!
+```{r echo=F, message=F, error=F}
+select(week8_tbl, q1:q6) %>%
+  ggpairs()
+ggplot(week8_tbl,
+       aes(x=q1q6mean, y=q8q10mean)) +
+  geom_point() +
+  geom_smooth(method="lm", color="purple")
+```
+
+# Analysis
+`r paste("I observed a correlation of",
+      str_remove(round(cor.test(week8_tbl$q1q6mean, week8_tbl$q8q10mean)$estimate,2), "^0"),
+      "with a p-value of",
+      round(cor.test(week8_tbl$q1q6mean, week8_tbl$q8q10mean)$p.value, 2)
+)
+`
+```{r}
+cor.test(week8_tbl$q1q6mean, week8_tbl$q8q10mean)
+```
+     
+# Data Export  
+comment!
+```{r}
+week8_tbl %>%
+  mutate(timefilter = timeEnd > "2017-07-01") %>%
+  select(q1q6mean, q8q10mean, timefilter, gender) %>%
+  saveRDS("../shiny/shiny_week8/shiny.RDS")
+```
