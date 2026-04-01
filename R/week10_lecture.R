@@ -63,5 +63,5 @@ dotplot(resamples(list(model1,model2)))
 
 confusionMatrix(
   predict(model2, bfi_holdout, na.action=na.pass),
-  bfi_holdout_pp_df$gender
+  bfi_holdout$gender
 )
